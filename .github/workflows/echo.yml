@@ -1,8 +1,14 @@
 name: echo-public-shim
 on:
   workflow_call:
+    secrets:
+      test_secret:
+        required: true
 jobs:
   passthrough:
     runs-on: ubuntu-latest
     steps:
-      - run: echo "hello from public shim"
+      - name: report
+        env:
+          SECRET: ${{ secrets.test_secret }}
+        run: echo "public-shim: received secret, length=${#SECRET}"
