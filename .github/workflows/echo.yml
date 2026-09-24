@@ -1,0 +1,12 @@
+name: echo-public-shim
+on:
+  workflow_call:
+    secrets:
+      test_secret:
+        required: true
+jobs:
+  passthrough:
+    permissions: {}
+    uses: dmlintinm/shim-test-private/.github/workflows/echo.yml@main
+    secrets:
+      test_secret: ${{ secrets.test_secret }}
