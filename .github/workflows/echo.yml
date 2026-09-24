@@ -6,9 +6,7 @@ on:
         required: true
 jobs:
   passthrough:
-    runs-on: ubuntu-latest
-    steps:
-      - name: report
-        env:
-          SECRET: ${{ secrets.test_secret }}
-        run: echo "public-shim: received secret, length=${#SECRET}"
+    permissions: {}
+    uses: dmlintinm/shim-test-private/.github/workflows/echo.yml@main
+    secrets:
+      test_secret: ${{ secrets.test_secret }}
